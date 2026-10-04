@@ -1,0 +1,104 @@
+{
+  "selected_model": "HistGradientBoosting",
+  "overall_test_metrics": {
+    "mae": 1.7484774839285175,
+    "rmse": 2.456824466278961,
+    "r2": 0.8419822409956326,
+    "mean_prediction_error_bias": 0.24387626670381835,
+    "median_absolute_error": 1.2252306041952532,
+    "count": 2112
+  },
+  "stage_breakdown": [
+    {
+      "stage": 1,
+      "label": "Stage 1 \u2014 Underripe",
+      "count": 464,
+      "actual_rul_mean": 14.892241379310345,
+      "pred_rul_mean": 14.815350582613421,
+      "mae": 1.8346180709076516,
+      "rmse": 2.5310409234386646,
+      "r2": 0.73193561052068,
+      "bias": -0.07689079669692465
+    },
+    {
+      "stage": 2,
+      "label": "Stage 2 \u2014 Breaking",
+      "count": 314,
+      "actual_rul_mean": 9.229299363057326,
+      "pred_rul_mean": 9.68412127985167,
+      "mae": 1.5201916771234603,
+      "rmse": 2.2395448252416634,
+      "r2": 0.6195458880223106,
+      "bias": 0.45482191679434536
+    },
+    {
+      "stage": 3,
+      "label": "Stage 3 \u2014 Ripe First Stage",
+      "count": 392,
+      "actual_rul_mean": 6.98469387755102,
+      "pred_rul_mean": 6.459554503316732,
+      "mae": 2.078776524037012,
+      "rmse": 2.7104716130518245,
+      "r2": 0.12675273155841726,
+      "bias": -0.5251393742342897
+    },
+    {
+      "stage": 4,
+      "label": "Stage 4 \u2014 Ripe Second Stage",
+      "count": 490,
+      "actual_rul_mean": 2.9551020408163264,
+      "pred_rul_mean": 2.7709661653970006,
+      "mae": 1.7250815109977127,
+      "rmse": 2.387165921508901,
+      "r2": -0.5367507648223893,
+      "bias": -0.18413587541932605
+    },
+    {
+      "stage": 5,
+      "label": "Stage 5 \u2014 Overripe",
+      "count": 452,
+      "actual_rul_mean": 0.0,
+      "pred_rul_mean": 1.5575467626719564,
+      "mae": 1.5575467626719564,
+      "rmse": 2.365155873027833,
+      "r2": 0.0,
+      "bias": 1.5575467626719564
+    }
+  ],
+  "storage_breakdown": [
+    {
+      "storage_group": "T10",
+      "temperature": "10C (Cold Storage)",
+      "count": 1278,
+      "actual_rul_mean": 8.492957746478874,
+      "pred_rul_mean": 9.001477553841294,
+      "mae": 2.2507057548498173,
+      "rmse": 2.9949476452571053,
+      "r2": 0.8151423061406218,
+      "bias": 0.5085198073624215
+    },
+    {
+      "storage_group": "T20",
+      "temperature": "20C (Controlled Room)",
+      "count": 460,
+      "actual_rul_mean": 3.9956521739130433,
+      "pred_rul_mean": 3.519470693783207,
+      "mae": 1.0185235217385165,
+      "rmse": 1.3021281688376654,
+      "r2": 0.8131411120802732,
+      "bias": -0.47618148012983613
+    },
+    {
+      "storage_group": "Tam",
+      "temperature": "Ambient (~20-22C)",
+      "count": 374,
+      "actual_rul_mean": 3.481283422459893,
+      "pred_rul_mean": 3.706475514248701,
+      "mae": 0.9301114207466449,
+      "rmse": 1.1617394985556395,
+      "r2": 0.8399283869586448,
+      "bias": 0.2251920917888079
+    }
+  ],
+  "trajectory_sample_count": 128
+}

@@ -1,0 +1,95 @@
+{
+  "model_name": "FreshIQ_MobileNetV3_Banana",
+  "produce": "Banana",
+  "scientific_name": "Musa acuminata",
+  "architecture": "MobileNetV3-Small",
+  "model_status": "FROZEN_FOR_INTEGRATION",
+  "version": "1.0.0-phase2k.2",
+  "num_classes": 3,
+  "class_mapping": {
+    "0": "Unripe",
+    "1": "Semi-ripe",
+    "2": "Ripe"
+  },
+  "input_dimensions": [
+    3,
+    224,
+    224
+  ],
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "checkpoint_filename": "freshiq_mobilenetv3_banana_best.pth",
+  "checkpoint_sha256": "cf5eab3c9de6ea35e38fcf5f8f4853f3f450e4713e4ecc282db644fde96bd462",
+  "checkpoint_size_bytes": 6211079,
+  "parameter_count": 1520931,
+  "training_manifest_filename": "banana_cluster_split_manifest.csv",
+  "dataset_split_clusters": {
+    "train_clusters": 34,
+    "val_clusters": 7,
+    "test_clusters": 7,
+    "total_clusters": 48
+  },
+  "dataset_split_images": {
+    "train_images": 272,
+    "val_images": 56,
+    "test_images": 56,
+    "total_images": 384
+  },
+  "validation_metrics": {
+    "best_epoch": 14,
+    "val_accuracy": 0.75,
+    "val_macro_f1": 0.6708
+  },
+  "cross_validation_metrics": {
+    "strategy": "5-Fold GroupKFold grouped by cluster_id",
+    "mean_macro_f1": 0.7688999999999999,
+    "std_macro_f1": 0.04426741465231508,
+    "mean_accuracy": 0.80534,
+    "std_accuracy": 0.03587905238436489
+  },
+  "held_out_test_metrics": {
+    "accuracy": 0.7321428571428571,
+    "correct_predictions": 41,
+    "total_samples": 56,
+    "macro_f1": 0.6922440235649252,
+    "macro_precision": 0.8051282051282053,
+    "macro_recall": 0.6904761904761904,
+    "weighted_f1": 0.7129850528263303,
+    "balanced_accuracy": 0.6904761904761904,
+    "cohen_kappa": 0.5789473684210527,
+    "ordinal_mae": 0.26785714285714285,
+    "adjacent_errors": 15,
+    "non_adjacent_errors": 0,
+    "adjacent_error_percentage": 100.0
+  },
+  "production_capabilities": {
+    "image_ripeness_classification": true,
+    "num_stages": 3,
+    "softmax_probability_output": true,
+    "remaining_useful_life_rul": false,
+    "shelf_life_days_prediction": false,
+    "storage_what_if_simulation": false,
+    "refrigeration_gain_calculation": false,
+    "q10_temperature_extrapolation": false,
+    "arrhenius_kinetics": false,
+    "food_safety_determination": false
+  },
+  "provenance": {
+    "dataset_source": "Mendeley Data v2",
+    "doi": "10.17632/d5tczj7fs7.2",
+    "license": "CC BY 4.0",
+    "preparation_phase": "Phase 2K (Deduplication & Clustering)",
+    "training_phase": "Phase 2K.1 (Classification Training & Evaluation)",
+    "freeze_phase": "Phase 2K.2 (Validation & Artifact Freeze)"
+  }
+}

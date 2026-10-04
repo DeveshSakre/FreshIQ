@@ -1,0 +1,2 @@
+metadata_rows,jpg_images_found,unique_specimens,observation_rows,missing_image_metadata_rows,duplicate_image_filenames_in_zip,specimen_day_stage_inconsistencies,train_specimens,val_specimens,test_specimens,train_images,val_images,test_images
+14722,14710,478,7361,14722,0,0,334,71,73,10276,2242,2204

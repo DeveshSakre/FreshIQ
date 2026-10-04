@@ -1,0 +1,54 @@
+{
+  "model_name": "FreshIQ_MobileNetV3_Mango",
+  "produce": "Mango",
+  "variety": "White Chaunsa Late",
+  "num_classes": 5,
+  "class_mapping": {
+    "Unripe": 0,
+    "Semiripe": 1,
+    "Fully Ripe": 2,
+    "Overripe": 3,
+    "Perished": 4
+  },
+  "idx_to_class": {
+    "0": "Unripe",
+    "1": "Semiripe",
+    "2": "Fully Ripe",
+    "3": "Overripe",
+    "4": "Perished"
+  },
+  "input_size": [
+    3,
+    224,
+    224
+  ],
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "pretrained_source": "torchvision.models.MobileNet_V3_Large_Weights.DEFAULT",
+  "best_epoch": 9,
+  "total_epochs": 10,
+  "batch_size": 32,
+  "seed": 42,
+  "optimizer": "AdamW",
+  "loss_function": "CrossEntropyLoss (Class-Weighted)",
+  "class_weights": {
+    "Unripe": 0.6558730158730158,
+    "Semiripe": 0.7651851851851852,
+    "Fully Ripe": 1.0540816326530613,
+    "Overripe": 0.9885167464114832,
+    "Perished": 4.804651162790698
+  },
+  "checkpoint_path": "D:\\FreshIQ\\ml\\saved_models\\freshiq_mobilenetv3_mango_best.pth",
+  "checkpoint_sha256": "4a8a35c2d18142a9c8a577ed51a83101b51cf510f847af23cd9fa9381857cac9",
+  "total_train_time_sec": 1783.760880947113
+}

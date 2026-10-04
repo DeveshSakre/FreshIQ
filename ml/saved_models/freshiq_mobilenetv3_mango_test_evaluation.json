@@ -1,0 +1,89 @@
+{
+  "model_name": "FreshIQ_MobileNetV3_Mango",
+  "checkpoint_sha256": "4a8a35c2d18142a9c8a577ed51a83101b51cf510f847af23cd9fa9381857cac9",
+  "best_validation_epoch": 9,
+  "best_val_macro_f1": 0.9479437736478383,
+  "held_out_test_metrics": {
+    "accuracy": 0.956390977443609,
+    "macro_precision": 0.9547290543521718,
+    "macro_recall": 0.9554387885422368,
+    "macro_f1": 0.9542486587453552,
+    "weighted_precision": 0.9585139189788762,
+    "weighted_recall": 0.956390977443609,
+    "weighted_f1": 0.9565942059853685,
+    "cohens_kappa": 0.942635409880928,
+    "balanced_accuracy": 0.9554387885422368,
+    "within_plus_minus_1_stage_accuracy": 1.0,
+    "ordinal_stage_mae": 0.04360902255639098,
+    "per_class_metrics": {
+      "Unripe": {
+        "precision": 0.9757281553398058,
+        "recall": 0.9901477832512315,
+        "f1_score": 0.9828850855745721,
+        "support": 203
+      },
+      "Semiripe": {
+        "precision": 0.9878787878787879,
+        "recall": 0.9367816091954023,
+        "f1_score": 0.9616519174041299,
+        "support": 174
+      },
+      "Fully Ripe": {
+        "precision": 0.8785714285714286,
+        "recall": 0.9761904761904762,
+        "f1_score": 0.924812030075188,
+        "support": 126
+      },
+      "Overripe": {
+        "precision": 0.968503937007874,
+        "recall": 0.9111111111111111,
+        "f1_score": 0.9389312977099236,
+        "support": 135
+      },
+      "Perished": {
+        "precision": 0.9629629629629629,
+        "recall": 0.9629629629629629,
+        "f1_score": 0.9629629629629629,
+        "support": 27
+      }
+    },
+    "confusion_matrix": [
+      [
+        201,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        5,
+        163,
+        6,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        123,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        11,
+        123,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        26
+      ]
+    ],
+    "total_test_samples": 665
+  }
+}

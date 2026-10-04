@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="forest">#0F291E</color>
+    <color name="primary_green">#16A34A</color>
+    <color name="bg_page">#F4FBF3</color>
+    <color name="bg_card">#FFFFFF</color>
+</resources>

@@ -1,0 +1,35 @@
+{
+  "checkpoint_verification": {
+    "checkpoint_path": "D:\\FreshIQ\\ml\\saved_models\\freshiq_mobilenetv3_avocado_best.pth",
+    "best_epoch": 10,
+    "best_val_macro_f1": 0.674495309798308,
+    "test_set_untouched": true
+  },
+  "ordinal_error_metrics": {
+    "total_test_samples": 2198,
+    "exact_match_0_stages_off_count": 1454,
+    "exact_match_0_stages_off_pct": 66.15104640582348,
+    "adjacent_error_1_stage_off_count": 703,
+    "adjacent_error_1_stage_off_pct": 31.983621474067338,
+    "error_2_stages_off_count": 40,
+    "error_2_stages_off_pct": 1.8198362147406733,
+    "error_3_plus_stages_off_count": 1,
+    "error_3_plus_stages_off_pct": 0.04549590536851684,
+    "ordinal_mean_absolute_error": 0.3575978161965423,
+    "within_1_stage_cumulative_pct": 98.13466787989081
+  },
+  "stage_4_5_confusion": {
+    "actual_stage_4_total": 490,
+    "actual_stage_4_predicted_as_stage_5_count": 50,
+    "actual_stage_4_predicted_as_stage_5_pct": 10.204081632653061,
+    "actual_stage_5_total": 452,
+    "actual_stage_5_predicted_as_stage_4_count": 244,
+    "actual_stage_5_predicted_as_stage_4_pct": 53.98230088495575
+  },
+  "epoch_instability_analysis": {
+    "epoch_4_dip_val_f1": 0.6056147803631775,
+    "epoch_8_dip_val_f1": 0.6283567308901631,
+    "peak_convergence_epoch": 10,
+    "peak_val_f1": 0.674495309798308
+  }
+}

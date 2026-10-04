@@ -1,0 +1,83 @@
+{
+  "model_name": "FreshIQ_MobileNetV3_Banana",
+  "produce": "Banana",
+  "scientific_name": "Musa acuminata",
+  "architecture": "MobileNetV3-Small",
+  "num_classes": 3,
+  "class_names": [
+    "Unripe",
+    "Semi-ripe",
+    "Ripe"
+  ],
+  "class_to_idx": {
+    "Unripe": 0,
+    "Semi-ripe": 1,
+    "Ripe": 2
+  },
+  "idx_to_class": {
+    "0": "Unripe",
+    "1": "Semi-ripe",
+    "2": "Ripe"
+  },
+  "checkpoint_file": "freshiq_mobilenetv3_banana_best.pth",
+  "checkpoint_sha256": "cf5eab3c9de6ea35e38fcf5f8f4853f3f450e4713e4ecc282db644fde96bd462",
+  "training_seed": 42,
+  "input_dimensions": [
+    3,
+    224,
+    224
+  ],
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "transfer_learning": {
+    "stage_1": {
+      "description": "Head warm-up (backbone frozen)",
+      "epochs": 5,
+      "lr": 0.001,
+      "optimizer": "AdamW"
+    },
+    "stage_2": {
+      "description": "Upper backbone fine-tuning (features[9:])",
+      "epochs": 10,
+      "lr": 0.0001,
+      "optimizer": "AdamW",
+      "scheduler": "CosineAnnealingLR"
+    }
+  },
+  "best_epoch": 14,
+  "total_epochs": 15,
+  "class_weights_derived_from_train": [
+    0.8888888888888888,
+    0.8888888888888888,
+    1.3333333333333333
+  ],
+  "training_environment": {
+    "python_version": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "pytorch_version": "2.14.0+cpu",
+    "torchvision_version": "torchvision",
+    "device": "cpu",
+    "cuda_available": false
+  },
+  "dataset_metadata": {
+    "source": "Mendeley Data v2",
+    "doi": "10.17632/d5tczj7fs7.2",
+    "license": "CC BY 4.0",
+    "train_clusters": 34,
+    "train_images": 272,
+    "val_clusters": 7,
+    "val_images": 56,
+    "test_clusters": 7,
+    "test_images": 56
+  },
+  "legal_disclaimer": "FreshIQ Banana Ripeness Classifier. Stage predictions are derived strictly from surface visual characteristics. Remaining Useful Life (RUL) modeling, shelf-life day counts, and storage simulations are intentionally unavailable for Banana because longitudinal ground truth and environmental kinetics do not exist for this dataset."
+}

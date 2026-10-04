@@ -1,0 +1,91 @@
+{
+  "model_name": "mobilenet_v3_small",
+  "best_epoch": 10,
+  "best_val_macro_f1": 0.674495309798308,
+  "test_accuracy": 0.6615104640582348,
+  "test_macro_precision": 0.6812297268678971,
+  "test_macro_recall": 0.6575785030510902,
+  "test_macro_f1": 0.6526724211578541,
+  "classification_report": {
+    "Stage 1 \u2014 Underripe": {
+      "precision": 0.8545454545454545,
+      "recall": 0.8134615384615385,
+      "f1-score": 0.8334975369458127,
+      "support": 520.0
+    },
+    "Stage 2 \u2014 Breaking": {
+      "precision": 0.5770171149144254,
+      "recall": 0.7195121951219512,
+      "f1-score": 0.6404341926729986,
+      "support": 328.0
+    },
+    "Stage 3 \u2014 Ripe First Stage": {
+      "precision": 0.6890756302521008,
+      "recall": 0.6029411764705882,
+      "f1-score": 0.6431372549019608,
+      "support": 408.0
+    },
+    "Stage 4 \u2014 Ripe Second Stage": {
+      "precision": 0.5251798561151079,
+      "recall": 0.7448979591836735,
+      "f1-score": 0.6160337552742615,
+      "support": 490.0
+    },
+    "Stage 5 \u2014 Overripe": {
+      "precision": 0.7603305785123967,
+      "recall": 0.40707964601769914,
+      "f1-score": 0.5302593659942363,
+      "support": 452.0
+    },
+    "accuracy": 0.6615104640582348,
+    "macro avg": {
+      "precision": 0.6812297268678971,
+      "recall": 0.6575785030510902,
+      "f1-score": 0.6526724211578541,
+      "support": 2198.0
+    },
+    "weighted avg": {
+      "precision": 0.6896158590456921,
+      "recall": 0.6615104640582348,
+      "f1-score": 0.658514516798157,
+      "support": 2198.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      423,
+      97,
+      0,
+      0,
+      0
+    ],
+    [
+      71,
+      236,
+      21,
+      0,
+      0
+    ],
+    [
+      1,
+      67,
+      246,
+      86,
+      8
+    ],
+    [
+      0,
+      8,
+      67,
+      365,
+      50
+    ],
+    [
+      0,
+      1,
+      23,
+      244,
+      184
+    ]
+  ]
+}

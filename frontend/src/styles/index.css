@@ -1,0 +1,308 @@
+:root {
+  /* FreshIQ Botanical Scientific Color Palette (Matching Stitch Design) */
+  --color-forest: #0F291E;
+  --color-forest-dark: #0A1D15;
+  --color-primary: #16A34A;
+  --color-primary-dark: #15803D;
+  --color-primary-light: #DCFCE7;
+  --color-lime: #84CC16;
+  --color-lime-light: #ECFCCB;
+  --color-lime-glow: #A3E635;
+  
+  /* Neutral Organic Slate/Mint Surface Palette */
+  --bg-page: #F4FBF3;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #EEF6ED;
+  --bg-subtle-hover: #E3ECE2;
+  --bg-elevated: #FFFFFF;
+  
+  --text-main: #161D18;
+  --text-muted: #526056;
+  --text-subtle: #7E8E82;
+  
+  --border-light: #DEE5DD;
+  --border-subtle: #E8EFE7;
+  --border-accent: #BBF7D0;
+  
+  /* Ripening Stage Semantics */
+  --stage-1: #16A34A; /* Underripe - Firm Green */
+  --stage-2: #65A30D; /* Breaking - Olive Green */
+  --stage-3: #CA8A04; /* Ripe 1st - Amber Gold */
+  --stage-4: #EA580C; /* Ripe 2nd - Vibrant Orange / Peak */
+  --stage-5: #991B1B; /* Overripe - Deep Wine / Terminal */
+  
+  /* Elevation & Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 41, 30, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 41, 30, 0.06), 0 1px 2px -1px rgba(15, 41, 30, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 41, 30, 0.07), 0 2px 4px -2px rgba(15, 41, 30, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 41, 30, 0.08), 0 4px 6px -4px rgba(15, 41, 30, 0.03);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 41, 30, 0.1), 0 8px 10px -6px rgba(15, 41, 30, 0.04);
+  
+  /* Typography */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Layout Dimensions */
+  --max-w-content: 1360px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+}
+
+/* Reset and Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* Responsive Image Rule */
+img, svg, canvas {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Accessible Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-forest);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+p, span, li, td {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+/* Global Container */
+.container {
+  width: 100%;
+  max-width: var(--max-w-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Standard FreshIQ Card (Stitch Spec) */
+.fresh-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .fresh-card {
+    padding: 1.75rem;
+  }
+}
+
+.fresh-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #D1DAD0;
+}
+
+/* Button System */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-forest);
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.925rem;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 6px rgba(15, 41, 30, 0.15);
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-forest-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 41, 30, 0.22);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  color: var(--color-forest);
+  border: 1px solid var(--border-light);
+  padding: 0.75rem 1.35rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.925rem;
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-secondary:hover {
+  border-color: #CBD5CA;
+  background-color: var(--bg-subtle);
+  color: var(--color-forest-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #FFFFFF;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-accent:hover {
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-accent:active {
+  transform: translateY(0);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-mono);
+}
+
+.badge-green {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.badge-amber {
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+
+.badge-blue {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+}
+
+.badge-purple {
+  background-color: #F3E8FF;
+  color: #6B21A8;
+}
+
+/* Animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin-smooth {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin-smooth 1s linear infinite;
+}
+
+/* Analysis Page Grid Split */
+@media (min-width: 1024px) {
+  .analysis-left-col {
+    grid-column: span 5 !important;
+  }
+  .analysis-right-col {
+    grid-column: span 7 !important;
+  }
+}

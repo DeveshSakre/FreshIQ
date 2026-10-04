@@ -1,0 +1,27 @@
+{
+  "features": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5",
+    "expected_stage",
+    "confidence",
+    "temperature_c",
+    "is_cold_storage"
+  ],
+  "target": "actual_rul",
+  "terminal_event": "Stage 5 (Overripe)",
+  "model_type": "HistGradientBoosting",
+  "supported_temperatures_c": [
+    10.0,
+    20.0
+  ],
+  "what_if_extrapolation_temperatures": {
+    "4C_refrigerator": {
+      "method": "Biophysical Arrhenius Extrapolation",
+      "empirical_q10_factor": 2.38,
+      "assumption": "Respiration rate decelerates following empirical Q10 observed between 10C and 20C."
+    }
+  }
+}

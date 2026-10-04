@@ -1,0 +1,102 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Android / Gradle
+# =========================
+android/.gradle/
+android/**/build/
+android/**/.gradle/
+android/local.properties
+*.apk
+*.aab
+*.apks
+
+# =========================
+# IDE / OS
+# =========================
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs / Temporary
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# Frontend
+# =========================
+**/node_modules/
+**/dist/
+
+# =========================
+# Datasets
+# =========================
+/datasets/
+/ml/datasets/
+/Avocado Ripening Dataset/
+
+# =========================
+# ML model binaries
+# =========================
+*.pth
+*.pt
+*.joblib
+*.onnx
+*.h5
+*.keras
+*.pkl
+*.pickle
+
+# =========================
+# ML generated outputs
+# =========================
+/ml/runs/
+/ml/outputs/
+/ml/checkpoints/
+/ml/saved_models/shelflife_extracted_features.csv
+
+# =========================
+# Backend temporary files
+# =========================
+backend/__pycache__/
+backend/.pytest_cache/
+
+# Temporary screenshots / dumps
+android/screen_test.png
+dump.txt
+
+# =========================
+# Android secrets
+# =========================
+google-services.json

@@ -1,0 +1,58 @@
+{
+  "strategy": "5-Fold GroupKFold grouped by cluster_id",
+  "training_clusters": 34,
+  "held_out_test_clusters": 7,
+  "folds": [
+    {
+      "fold": 0,
+      "val_clusters": 7,
+      "val_samples": 56,
+      "accuracy": 0.8571,
+      "macro_f1": 0.836,
+      "macro_precision": 0.891,
+      "macro_recall": 0.8254
+    },
+    {
+      "fold": 1,
+      "val_clusters": 7,
+      "val_samples": 56,
+      "accuracy": 0.7857,
+      "macro_f1": 0.7575,
+      "macro_precision": 0.8788,
+      "macro_recall": 0.746
+    },
+    {
+      "fold": 2,
+      "val_clusters": 7,
+      "val_samples": 56,
+      "accuracy": 0.75,
+      "macro_f1": 0.7029,
+      "macro_precision": 0.7711,
+      "macro_recall": 0.7063
+    },
+    {
+      "fold": 3,
+      "val_clusters": 7,
+      "val_samples": 56,
+      "accuracy": 0.8214,
+      "macro_f1": 0.7935,
+      "macro_precision": 0.8437,
+      "macro_recall": 0.7857
+    },
+    {
+      "fold": 4,
+      "val_clusters": 6,
+      "val_samples": 48,
+      "accuracy": 0.8125,
+      "macro_f1": 0.7546,
+      "macro_precision": 0.8758,
+      "macro_recall": 0.7593
+    }
+  ],
+  "aggregate": {
+    "mean_macro_f1": 0.7688999999999999,
+    "std_macro_f1": 0.04426741465231508,
+    "mean_accuracy": 0.80534,
+    "std_accuracy": 0.03587905238436489
+  }
+}

@@ -1,0 +1,13 @@
+FreshIQ Banana Ripeness Classifier - Test Set Classification Report
+Checkpoint: freshiq_mobilenetv3_banana_best.pth (SHA-256: cf5eab3c9de6ea35e38fcf5f8f4853f3f450e4713e4ecc282db644fde96bd462)
+Evaluated on 56 samples from 7 held-out test clusters.
+
+              precision    recall  f1-score   support
+
+      Unripe       0.80      0.95      0.87        21
+   Semi-ripe       0.62      0.76      0.68        21
+        Ripe       1.00      0.36      0.53        14
+
+    accuracy                           0.73        56
+   macro avg       0.81      0.69      0.69        56
+weighted avg       0.78      0.73      0.71        56
