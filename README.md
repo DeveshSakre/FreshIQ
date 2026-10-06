@@ -57,50 +57,12 @@ FreshIQ uses a **capability-aware architecture** rather than pretending every pr
 
 ---
 
-# 🏗️ System Architecture
-
-```text
-                    ┌─────────────────────────┐
-                    │      Android App        │
-                    │                         │
-                    │  Camera / Gallery       │
-                    │  Produce Selection      │
-                    │  Analysis               │
-                    │  What-If                │
-                    │  Comparison             │
-                    │  History                │
-                    └────────────┬────────────┘
-                                 │
-                                 │ HTTP / REST
-                                 ▼
-                    ┌─────────────────────────┐
-                    │     FastAPI Backend     │
-                    │                         │
-                    │  Request Validation     │
-                    │  Produce Routing        │
-                    │  Model Loading          │
-                    │  Prediction             │
-                    │  Storage Scenarios      │
-                    └────────────┬────────────┘
-                                 │
-                ┌────────────────┼────────────────┐
-                │                │                │
-                ▼                ▼                ▼
-        ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
-        │   Avocado    │ │    Mango     │ │    Banana    │
-        │ Vision Model │ │ Vision Model │ │ Vision Model │
-        └──────┬───────┘ └──────────────┘ └──────────────┘
-               │
-               ▼
-        ┌──────────────────────┐
-        │ Avocado RUL / Storage│
-        │ Modeling             │
-        └──────────────────────┘
 
 
-        🤖 Machine Learning
+#🤖 Machine Learning
 FreshIQ uses separate models for each produce type because the available datasets, ripening stages, and prediction capabilities differ between produce.
-🥑 Hass Avocado
+
+#🥑 Hass Avocado
 Ripeness Classification
 The avocado classifier recognizes five ripening stages:
 1. Underripe
@@ -108,11 +70,11 @@ The avocado classifier recognizes five ripening stages:
 3. Ripe First Phase
 4. Ripe Second Phase
 5. Overripe
-Model:
+Model
 - Architecture: MobileNetV3-Small
-- Transfer learning with ImageNet-pretrained weights
+- Transfer learning: ImageNet-pretrained weights
 - Produce-specific classification pipeline
-- Specimen-level grouping used during dataset preparation
+- Specimen-level grouping during dataset preparation
 - Non-decreasing ripening trajectories verified for longitudinal sequences
 Classification Results
 Metric	Test Result
@@ -124,10 +86,11 @@ Ordinal MAE	0.3576 stages
 Accuracy within ±1 stage	98.13%
 
 
-The ordinal evaluation is particularly relevant because ripeness stages have a natural ordering. A prediction one stage away is materially different from a prediction several stages away.
-⏳ Avocado Remaining Useful Life
+Ordinal evaluation is particularly relevant because ripeness stages have a natural ordering. A prediction one stage away is materially different from a prediction several stages away.    Pasted text
+
+##⏳ Avocado Remaining Useful Life
 For avocado, FreshIQ also estimates remaining usable shelf life where the dataset supports longitudinal storage modeling.
-The current RUL model uses a HistGradientBoosting model.
+The current RUL model uses HistGradientBoosting.    Pasted text
 Test Results
 Metric	Result
 MAE	1.7485 days
@@ -139,14 +102,14 @@ Bias	+0.2439 days
 
 Approximately:
 1.75 days MAE ≈ 41.9 hours
-The model's error varies by storage condition, which is expected because the available data is not equally distributed across all conditions.
-Stage 5 Behavior
+The model's error varies by storage condition because the available data is not equally distributed across all conditions.   
+Terminal Stage Behavior
 Once an avocado reaches the terminal Overripe stage:
 Remaining Useful Life = 0 days
 
-🥭 Mango
+#🥭 Mango
 Mango is currently supported for ripeness classification only.
-The dataset does not provide the longitudinal specimen tracking and numerical storage-condition data required for a defensible remaining shelf-life model.
+The dataset does not provide the longitudinal specimen tracking and numerical storage-condition data required for a defensible remaining shelf-life model.    Pasted text
 Ripeness Stages
 1. Unripe
 2. Semiripe
@@ -171,10 +134,10 @@ Ordinal MAE	0.0436 stages
 Accuracy within ±1 stage	100%
 
 
-FreshIQ intentionally does not generate RUL, storage scenarios, or What-If shelf-life predictions for mango.
-🍌 Banana
-Banana is also supported for ripeness classification only.
-The dataset contains day-based observations but does not provide the numerical storage-condition information and specimen-level structure required for a defensible shelf-life model.
+FreshIQ intentionally does not generate RUL, storage scenarios, or What-If shelf-life predictions for mango.   
+#🍌 Banana
+Banana is supported for ripeness classification only.
+The dataset contains day-based observations but does not provide the numerical storage-condition information and specimen-level structure required for a defensible shelf-life model.    Pasted text
 FreshIQ Banana Taxonomy
 The original observations are mapped into three actionable stages:
 1. Unripe
@@ -187,7 +150,7 @@ The preparation pipeline included:
 - Connected-component grouping
 - Clone-group analysis
 - Group-aware train/validation/test splitting
-- Prevention of related image leakage between splits
+- Prevention of related-image leakage between splits
 Model
 - Architecture: MobileNetV3-Small
 - ImageNet-pretrained weights
@@ -207,21 +170,23 @@ Non-adjacent errors	0
 
 
 The test errors were all adjacent-stage errors, which is important for an ordered ripeness problem.
-FreshIQ does not generate RUL or storage-condition What-If predictions for banana.
-🌡️ Storage & What-If Modeling
+FreshIQ does not generate RUL or storage-condition What-If predictions for banana.    Pasted text
+
+#🌡️ Storage & What-If Modeling
 Storage analysis is available only where the underlying data and modeling methodology support it.
 For avocado, FreshIQ provides scenario information for:
 - 20°C
 - 10°C
 - 4°C
-The 10°C and 20°C scenarios are based on observed storage conditions.
+The 10°C and 20°C scenarios are based on observed storage conditions.    Pasted text
 4°C Scenario
 The available avocado training data does not directly provide observed 4°C longitudinal measurements.
 Therefore, the 4°C result is explicitly labeled:
 Model-based extrapolation
 
-FreshIQ keeps this distinction visible in the UI instead of presenting extrapolated values as directly observed experimental results.
-🔬 Backend as the Single Source of Truth
+FreshIQ keeps this distinction visible in the UI instead of presenting extrapolated values as directly observed experimental results.    Pasted text
+
+##🔬 Backend as the Single Source of Truth
 A major architectural principle of FreshIQ is:
 The Android client never performs ML or biophysical calculations.
 
@@ -241,9 +206,9 @@ The Android application is responsible for:
 - Rendering backend results
 - Local scan history
 - UI state and navigation
-This prevents the mobile client from accidentally producing predictions that are inconsistent with the trained models.
-📱 Android Application
-FreshIQ is implemented as a native Android application using modern Android development practices.
+This prevents the mobile client from producing predictions that are inconsistent with the trained models.   
+#📱 Android Application
+FreshIQ is implemented as a native Android application using modern Android development practices.    
 Technology Stack
 - Kotlin
 - Jetpack Compose
@@ -265,18 +230,18 @@ UI
 ├── Comparison
 ├── History
 └── Insights
-       │
-       ▼
-ViewModels
-       │
-       ▼
-Repositories
-       │
-       ├── Retrofit API
-       │
-       └── Room Database
+      │
+      ▼
+ ViewModels
+      │
+      ▼
+ Repositories
+      │
+      ├── Retrofit API
+      │
+      └── Room Database
 
-📸 Scan Flow
+#📸 Scan Flow
 The primary user flow is:
 Home
   ↓
@@ -292,8 +257,9 @@ FastAPI Prediction
   ↓
 Analysis Result
 
-The application uses a guarded prediction flow so that a single analysis action does not unintentionally trigger multiple backend prediction requests.
-📊 Analysis Screen
+The application uses a guarded prediction flow so that a single analysis action does not unintentionally trigger multiple backend prediction requests.    Pasted text
+
+#📊 Analysis Screen
 The Analysis screen adapts to the capabilities of the selected produce.
 Avocado
 Displays:
@@ -318,8 +284,9 @@ Displays:
 - Ripeness progression
 - Recommendation
 - Food-safety disclaimer
-Unsupported shelf-life functionality is intentionally hidden rather than simulated.
-💾 Local Scan History
+Unsupported shelf-life functionality is intentionally hidden rather than simulated.   
+
+#💾 Local Scan History
 FreshIQ uses Room for local scan history.
 History supports:
 - Saving analyzed scans
@@ -329,8 +296,9 @@ History supports:
 - Deleting individual scans
 - Clearing history
 Opening an existing history item does not trigger a new backend prediction request.
-This keeps historical results local and avoids unnecessary inference calls.
-🔍 What-If Analysis
+This keeps historical results local and avoids unnecessary inference calls.    Pasted text
+
+#🔍 What-If Analysis
 What-If analysis allows supported avocado predictions to be explored under available storage scenarios.
 The Android client does not calculate:
 - Shelf-life deltas
@@ -340,30 +308,32 @@ The Android client does not calculate:
 - RUL interpolation
 - 4°C estimates
 These values come from the backend.
-The UI only presents the backend-provided scenario information.
-🆚 Storage Comparison
+The UI only presents the backend-provided scenario information.  
+
+##🆚 Storage Comparison
 For avocado, FreshIQ can compare supported storage scenarios using backend-provided data.
 The comparison layer does not independently recompute shelf-life improvements.
-This keeps the prediction and visualization layers separated.
+This keeps the prediction and visualization layers separated.    Pasted text
 🛡️ Responsible AI
 FreshIQ intentionally follows several principles to avoid overstating model capabilities.
-1. Produce-specific capabilities
+1. Produce-Specific Capabilities
 Different datasets support different predictions.
 Avocado → Classification + RUL + Storage What-If
 Mango   → Classification
 Banana  → Classification
 
-2. No unsupported predictions
+2. No Unsupported Predictions
 If a dataset does not support shelf-life modeling, FreshIQ does not invent a shelf-life value.
-3. Explicit extrapolation
+3. Explicit Extrapolation
 The 4°C avocado scenario is clearly identified as model-based extrapolation.
-4. Backend authority
+4. Backend Authority
 ML predictions are generated by the backend rather than recreated on-device.
-5. Food-safety disclaimer
+5. Food-Safety Disclaimer
 FreshIQ provides decision support and does not guarantee that food is safe to consume.
-Visual ripeness and predicted usability should not be treated as a substitute for appropriate food-safety practices.
-🧪 Validation
-The finalized system was tested across the ML/backend/Android stack.
+Visual ripeness and predicted usability should not be treated as a substitute for appropriate food-safety practices.   
+
+##🧪 Validation
+The finalized system was tested across the ML, backend, and Android stack.
 Validation included:
 - Android unit tests
 - Backend API tests
@@ -391,8 +361,8 @@ The finalized QA also verified that:
 - Comparison does not create an additional prediction request
 - History does not trigger inference
 - Insights does not trigger inference
-- Mango and Banana do not expose unsupported RUL functionality
-🧰 Technology Stack
+- Mango and Banana do not expose unsupported RUL functionality    
+#🧰 Technology Stack
 Machine Learning
 - Python 3
 - PyTorch
@@ -429,7 +399,8 @@ Development
 - GitHub
 - ADB
 - Physical Android device testing
-📁 Project Structure
+
+#📁 Project Structure
 FreshIQ/
 │
 ├── android/
@@ -450,7 +421,8 @@ FreshIQ/
 └── requirements / configuration files
 
 Datasets, trained model binaries, secrets, local configuration, APKs, and generated build artifacts are intentionally excluded from the repository.
-🚀 Getting Started
+
+##🚀 Getting Started
 Prerequisites
 Backend
 - Python 3
@@ -491,7 +463,7 @@ adb reverse tcp:8000 tcp:8000
 The Android client can then communicate with:
 http://127.0.0.1:8000/
 
-🔐 Repository & Security
+##🔐 Repository & Security
 The repository intentionally excludes:
 - Dataset files
 - Trained model binaries
@@ -505,9 +477,10 @@ The repository intentionally excludes:
 - Debug dumps
 - Python virtual environments
 This keeps the public repository lightweight and prevents accidental exposure of sensitive or generated artifacts.
-📌 Current Limitations
+
+##📌 Current Limitations
 FreshIQ is a research and decision-support prototype and has several important limitations.
-Dataset limitations
+Dataset Limitations
 Model performance depends on the datasets used for training and evaluation.
 Different produce types have different levels of:
 - Sample size
@@ -515,12 +488,12 @@ Different produce types have different levels of:
 - Storage-condition coverage
 - Image diversity
 - Specimen metadata
-Shelf-life limitations
+Shelf-Life Limitations
 Remaining useful life is currently supported only for avocado.
 Mango and banana are intentionally classification-only.
-Storage extrapolation
+Storage Extrapolation
 The avocado 4°C scenario is model-based extrapolation rather than direct 4°C longitudinal observation.
-Real-world variability
+Real-World Variability
 Real produce can vary because of:
 - Cultivar
 - Growing conditions
@@ -533,7 +506,8 @@ Real produce can vary because of:
 - Microbial activity
 - Storage environment
 Therefore, model predictions should not be interpreted as guaranteed outcomes.
-🔮 Future Scope
+
+##🔮 Future Scope
 Potential future improvements include:
 - Larger multi-produce datasets
 - More geographically diverse produce samples
@@ -547,7 +521,8 @@ Potential future improvements include:
 - Expanded food-quality intelligence
 - Real-world deployment studies
 Future features will only be introduced where the underlying data and validation methodology support them.
-📊 Project Highlights
+
+##📊 Project Highlights
 Area	Implementation
 Computer Vision	Produce-specific ripeness classification
 Deep Learning	MobileNetV3 transfer learning
@@ -563,17 +538,17 @@ Testing	Unit + integration + physical-device QA
 Repository	GitHub
 
 
-👨‍💻 Author
+#👨‍💻 Author
 Devesh Sakre
 B.Tech Computer Science & Engineering
 VIT Bhopal University
 GitHub:
 https://github.com/DeveshSakre
-⚠️ Disclaimer
+
+#⚠️ Disclaimer
 FreshIQ is an AI-based research and decision-support system.
 Predictions represent model outputs based on the available training data and input image. Shelf-life estimates are not guarantees of food safety, quality, or suitability for consumption.
 Always use appropriate food-safety practices and human judgment before consuming stored produce.
-⭐ If you find FreshIQ interesting
-Feel free to explore the repository, review the ML pipelines, experiment with the Android application, or build upon the project.
 
-**One correction from the earlier version:** I removed the unsupported claim about **TensorFlow** from the ML stack. The README now sticks to the technologies actually established for the finalized FreshIQ system.
+#⭐ If You Find FreshIQ Interesting
+Feel free to explore the repository, review the ML pipelines, experiment with the Android application, or build upon the project
