@@ -1,163 +1,124 @@
 # FreshIQ
 
-FreshIQ is an AI-powered multi-produce freshness, ripeness, and shelf-life decision-support system. It combines deep learning computer vision with postharvest biophysical modeling to analyze produce images, classify ripeness stages, project remaining useful life (RUL) under different storage temperatures, and provide actionable storage recommendations.
+### AI-Powered Multi-Produce Ripeness & Shelf-Life Decision Support
 
-## Overview
+FreshIQ is an AI-powered system that uses computer vision to classify produce ripeness from images and, where the available data supports it, estimate remaining usable shelf life under different storage conditions.
 
-FreshIQ delivers image-based produce analysis tailored to the biological characteristics and available data for each produce type. Rather than applying a generic heuristic, capabilities are strictly model- and dataset-dependent:
+The system combines a **native Android application**, **FastAPI inference backend**, and **produce-specific machine learning pipelines**. FreshIQ deliberately uses different capabilities for different produce types instead of applying unsupported shelf-life predictions universally.
 
-- **Hass Avocado**: Supports multi-stage ripeness classification, regression-based Remaining Useful Life (RUL) estimation, and empirical storage scenario simulations (10°C and 20°C) alongside model-based refrigerated extrapolation (4°C).
-- **Mango**: Supports multi-stage visual ripeness classification with confidence scores and storage recommendations.
-- **Banana**: Supports 3-stage visual ripeness classification with confidence scores and consumption guidance.
-
-> **Food Safety Notice**: AI shelf-life estimates are decision-support outputs and are not a food-safety guarantee. Always inspect produce for physical signs of spoilage (mold, off-odors, excessive softening) before consumption.
+> **Important:** FreshIQ provides AI-based decision support. Shelf-life estimates are not a food-safety guarantee.
 
 ---
 
-## Supported Produce
+## 🌱 Supported Produce
 
-| Produce | Ripeness Classification | Taxonomy Stages | Remaining Useful Life (RUL) | Storage Scenarios / What-If |
-|---|---|---|---|---|
-| **Hass Avocado** | Yes | 5 Stages (Stage 1 to Stage 5) | Yes | Yes (10°C, 20°C empirical; 4°C extrapolation) |
-| **Mango** | Yes | 5 Stages (Unripe, Early Ripe, Partially Ripe, Ripe, Overripe) | No | No |
-| **Banana** | Yes | 3 Stages (Unripe, Semi-ripe, Ripe) | No | No |
+| Produce | Ripeness Classification | RUL / Shelf Life | Storage What-If |
+|:---|:---:|:---:|:---:|
+| 🥑 Hass Avocado | ✅ | ✅ | ✅ |
+| 🥭 Mango | ✅ | — | — |
+| 🍌 Banana | ✅ | — | — |
 
-*Note: Mango and Banana do not support RUL or storage scenario simulation due to the absence of longitudinal temperature-controlled storage datasets for those varieties.*
+### Why are the capabilities different?
 
----
+FreshIQ's capabilities are determined by the data available for each produce.
 
-## Key Features
+**Hass Avocado** has longitudinal storage observations that support both ripeness classification and remaining useful life (RUL) modeling.
 
-- **Multi-Produce Viewfinder & Gallery**: Capture photos or select gallery images with real-time produce taxonomy switching.
-- **AI Ripeness Classification**: Deep learning inference predicting stage classification and full softmax probability distributions.
-- **Avocado Remaining Useful Life (RUL)**: Predicts remaining days of edible shelf life under ambient and cool storage.
-- **Storage Scenario Projections**: Compares postharvest longevity at ambient room temperature (20°C) versus cool storage (10°C).
-- **Model-Based 4°C Extrapolation**: Evaluates potential refrigerated holding life via biophysical respiration modeling with explicit extrapolation labels.
-- **What-If Simulation**: Interactive temperature selection for avocado shelf-life planning.
-- **Side-by-Side Comparison**: Direct visual comparison between baseline ambient conditions and target storage temperatures.
-- **Room Persistence & History**: Local scan history storage with search, stage-based filtering, and offline record review without redundant network calls.
-- **Educational Insights**: Postharvest handling intelligence, temperature management guidance, and chilling injury advisories.
-- **Modern Botanical Android UI**: Built with Jetpack Compose following Material 3 design guidelines.
+**Mango and Banana** datasets support ripeness classification but do not provide the longitudinal temperature-controlled observations required for a defensible RUL model.
+
+Therefore, FreshIQ intentionally does **not** fabricate shelf-life predictions for Mango or Banana.
 
 ---
 
-## Architecture
+## ✨ Features
 
-The project is structured with a strict separation between presentation and machine learning inference:
+- 📷 **Image-Based Ripeness Classification**
+  - Analyze produce images using computer vision models.
+  - Produce-specific ripeness taxonomies.
 
-### Android Client (`android/`)
-- **Language & Runtime**: Kotlin, Java 17
-- **UI Framework**: Jetpack Compose, Material 3
-- **Architecture**: MVVM with unidirectional data flow (StateFlow)
-- **Dependency Injection**: Hilt
-- **Networking**: Retrofit, OkHttp
-- **Local Persistence**: Room SQLite Database
-- **Image Loading**: Coil
-- **Navigation**: Navigation Compose
+- 🧠 **Produce-Specific AI Models**
+  - Separate models and capabilities for Avocado, Mango, and Banana.
+  - Capability boundaries are enforced by the backend and Android client.
 
-### Backend API (`backend/`)
-- **Framework**: FastAPI (Python)
-- **Server**: Uvicorn ASGI
-- **Endpoints**:
-  - `GET /api/health`: System health and loaded model verification
-  - `POST /api/predict`: Multipart image inference with produce-type routing
-- **Validation**: Pydantic schemas with strict validation for supported produce types
+- 📊 **Confidence & Class Distribution**
+  - Displays model confidence and classification probability distribution.
 
-### Machine Learning (`ml/`)
-- **Classification Models**: PyTorch MobileNetV3-Small vision classifiers trained on produce datasets
-- **RUL Regression Model**: scikit-learn Random Forest regressor extracting deep feature embeddings from vision checkpoints
-- **Simulation Engine**: Respiration rate biophysical modeling for scenario generation
+- 🥑 **Avocado Remaining Useful Life (RUL)**
+  - Estimates remaining usable life for Hass Avocado.
+  - Uses storage-aware modeling based on the available longitudinal dataset.
 
----
+- 🌡️ **Storage Scenario Analysis**
+  - Backend-provided storage scenarios for supported Avocado predictions.
+  - Compare estimated RUL across supported conditions.
 
-## Backend Source of Truth
+- ❄️ **4°C Model-Based Extrapolation**
+  - 4°C results are explicitly identified as model-based extrapolation.
+  - They are not presented as direct experimental ground truth.
 
-To maintain scientific integrity and prevent client-side inconsistencies:
-- The **backend** is the sole authority for ML predictions, confidence scores, class probability distributions, RUL estimates, scenario projections, and storage advice.
-- The **Android client** is strictly a presentation and persistence client. The mobile application never calculates ripeness stages, RUL days, Q10 kinetic factors, or simulated temperatures.
+- 🔄 **What-If Analysis**
+  - Explore supported Avocado storage scenarios without triggering additional prediction requests.
 
----
+- 📱 **Native Android Application**
+  - Kotlin + Jetpack Compose.
+  - Scan, analyze, compare, save, and revisit predictions.
 
-## 4°C Refrigeration Extrapolation
+- 🗂️ **Local Scan History**
+  - Scan results are persisted locally using Room.
+  - Reopening a saved result does not require another ML prediction.
 
-Empirical storage datasets for avocado were collected at 10°C and 20°C. Storage projections at 4°C are calculated via an Arrhenius-derived respiration model ($Q_{10} = 2.38$):
+- ⚡ **FastAPI Inference Backend**
+  - Centralized prediction and storage-model logic.
+  - Backend acts as the single source of truth for ML outputs.
 
-- The 4°C projection is explicitly designated as a **model-based extrapolation** rather than measured ground truth.
-- Avocados stored below 5°C are susceptible to **chilling injury** (internal mesocarp browning, vascular browning, failure to ripen normally). The application prominently displays this caveat alongside 4°C projections.
-
----
-
-## Project Structure
-
-```
-FreshIQ/
-├── android/                  # Native Android application
-│   ├── app/
-│   │   ├── src/main/java/com/freshiq/app/
-│   │   │   ├── data/         # Room database, DTOs, Retrofit API client
-│   │   │   ├── di/           # Hilt dependency injection modules
-│   │   │   ├── model/        # Domain entities (ProduceType, RipenessStage)
-│   │   │   ├── ui/           # Jetpack Compose screens, components, theme
-│   │   │   └── viewmodel/    # MVVM ViewModels & ScanSessionManager
-│   │   └── build.gradle.kts
-│   └── build.gradle.kts
-├── backend/                  # FastAPI backend service
-│   ├── app/
-│   │   ├── routes/           # API routes (/health, /predict)
-│   │   ├── schemas/          # Pydantic request/response schemas
-│   │   ├── services/         # Inference and model loading service
-│   │   └── main.py           # Application entry point
-│   └── requirements.txt
-├── ml/                       # ML training, evaluation, and simulation
-│   ├── banana_classifier.py  # Banana MobileNetV3 training and architecture
-│   ├── mango_classifier.py   # Mango MobileNetV3 training and architecture
-│   ├── model.py              # Avocado MobileNetV3 architecture
-│   ├── shelflife_data.py     # Feature extraction for RUL modeling
-│   ├── simulation_engine.py  # Temperature scenario simulation engine
-│   └── train_shelflife.py    # Random Forest RUL regressor training
-├── freshiq_manifests/        # Dataset splits and manifest CSVs
-├── frontend/                 # Web client
-└── README.md
-```
+- 🛡️ **Responsible AI Guardrails**
+  - Unsupported RUL predictions are not generated.
+  - Android does not independently calculate ML or biophysical outputs.
+  - Food-safety limitations are clearly communicated.
 
 ---
 
-## Setup & Running Locally
+## 🏗️ System Architecture
 
-### Backend Setup
-
-1. **Prerequisites**: Python 3.10+ (tested up to 3.12)
-2. **Install Dependencies**:
-   ```bash
-   pip install -r backend/requirements.txt
-   ```
-3. **Start the API Server**:
-   ```bash
-   uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
-   ```
-4. **Verify Health**:
-   Navigate to `http://127.0.0.1:8000/api/health` in a browser or curl to confirm models are loaded.
-
-### Android Setup
-
-1. **Prerequisites**: Android Studio Ladybug or newer, Android SDK 34+
-2. **Reverse Port Forwarding** (for physical device testing over USB):
-   ```bash
-   adb reverse tcp:8000 tcp:8000
-   ```
-3. **Build and Run**:
-   Open the `android/` directory in Android Studio, sync Gradle, and run on a connected device or emulator.
-   To build via command line:
-   ```bash
-   cd android
-   ./gradlew assembleDebug
-   ```
-
----
-
-## Limitations
-
-- **Produce Scope**: Currently supports Hass Avocado, Mango, and Banana. Unrecognized produce returns a clean validation error.
-- **Longitudinal Storage Data**: Only Hass Avocado includes experimental shelf-life storage data; Mango and Banana provide classification only.
-- **Visual Surface Limitation**: Visual analysis reflects exterior skin condition; internal disorders without surface manifestation cannot be detected optically.
-- **Model Extrapolation**: 4°C storage estimates are mathematical projections based on respiration kinetics and should not be treated as empirical shelf-life trials.
+```text
+                         FreshIQ
+                            │
+              ┌─────────────┴─────────────┐
+              │                           │
+              ▼                           │
+     ┌──────────────────┐                 │
+     │   Android App    │                 │
+     │                  │                 │
+     │ Kotlin           │                 │
+     │ Jetpack Compose  │                 │
+     │ MVVM             │                 │
+     │ Hilt             │                 │
+     │ Retrofit         │                 │
+     │ Room             │                 │
+     └────────┬─────────┘                 │
+              │                           │
+              │ HTTP                      │
+              ▼                           │
+     ┌──────────────────┐                 │
+     │ FastAPI Backend  │                 │
+     │                  │                 │
+     │ Prediction API   │                 │
+     │ Produce Routing  │                 │
+     │ Scenario Logic   │                 │
+     └────────┬─────────┘                 │
+              │                           │
+        ┌─────┼──────────────┐            │
+        │     │              │            │
+        ▼     ▼              ▼            │
+   ┌────────┐ ┌────────┐ ┌────────┐      │
+   │Avocado │ │ Mango  │ │ Banana │      │
+   │ Vision │ │ Vision │ │ Vision │      │
+   │  + RUL │ │        │ │        │      │
+   └────┬───┘ └────────┘ └────────┘      │
+        │                                  │
+        ▼                                  │
+   ┌──────────────────────────┐            │
+   │ Avocado Storage Modeling │            │
+   │                          │            │
+   │ 10°C / 20°C empirical   │            │
+   │ 4°C model extrapolation  │            │
+   └──────────────────────────┘            │
