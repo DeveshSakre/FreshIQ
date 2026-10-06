@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -16,11 +17,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,14 +38,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.freshiq.app.ui.theme.BgCard
-import com.freshiq.app.ui.theme.BorderLight
-import com.freshiq.app.ui.theme.Forest
+import com.freshiq.app.ui.theme.BotanicalOnPrimary
+import com.freshiq.app.ui.theme.BotanicalOnSurface
+import com.freshiq.app.ui.theme.BotanicalOnSurfaceVariant
+import com.freshiq.app.ui.theme.BotanicalOutline
+import com.freshiq.app.ui.theme.BotanicalPrimary
+import com.freshiq.app.ui.theme.BotanicalPrimaryContainer
+import com.freshiq.app.ui.theme.BotanicalPrimaryFixed
+import com.freshiq.app.ui.theme.BotanicalSurface
+import com.freshiq.app.ui.theme.BotanicalSurfaceContainerLowest
+import com.freshiq.app.ui.theme.FreshIQSpacing
 import com.freshiq.app.ui.theme.FreshIQTheme
-import com.freshiq.app.ui.theme.LimeGlow
-import com.freshiq.app.ui.theme.PrimaryGreen
-import com.freshiq.app.ui.theme.PrimaryLight
-import com.freshiq.app.ui.theme.TextMuted
+import com.freshiq.app.ui.theme.FreshIQTypography
 
 private data class NavigationItem(
     val screen: Screen,
@@ -83,23 +87,22 @@ fun FreshIQBottomBarContent(
             NavigationItem(Screen.Home, Icons.Default.Home),
             NavigationItem(Screen.Scan, Icons.Default.CameraAlt, isProminent = true),
             NavigationItem(Screen.History, Icons.Default.History),
-            NavigationItem(Screen.WhatIf, Icons.Default.Tune),
-            NavigationItem(Screen.Insights, Icons.Default.Book)
+            NavigationItem(Screen.Insights, Icons.Default.AutoAwesome)
         )
     }
 
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(BgCard)
-            .border(width = 1.dp, color = BorderLight)
+            .background(BotanicalSurface.copy(alpha = 0.95f))
+            .border(width = 1.dp, color = Color(0xFFE6E6DF))
             .navigationBarsPadding()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(68.dp)
-                .padding(horizontal = 8.dp),
+                .height(66.dp)
+                .padding(horizontal = FreshIQSpacing.spaceSm),
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -107,11 +110,11 @@ fun FreshIQBottomBarContent(
                 val isSelected = currentRoute == item.screen.route
 
                 if (item.isProminent) {
-                    // Prominent Scan Produce CTA button in the center
+                    // Center Prominent Scan Shutter Pill
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
-                            .offset(y = (-8).dp)
+                            .offset(y = (-10).dp)
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
@@ -121,61 +124,71 @@ fun FreshIQBottomBarContent(
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(50.dp)
-                                .shadow(6.dp, CircleShape)
+                                .size(54.dp)
+                                .shadow(8.dp, CircleShape)
                                 .clip(CircleShape)
-                                .background(Forest)
-                                .border(2.dp, if (isSelected) LimeGlow else PrimaryGreen, CircleShape),
+                                .background(BotanicalPrimaryContainer)
+                                .border(
+                                    width = 3.dp,
+                                    color = if (isSelected) BotanicalPrimaryFixed else BotanicalSurface,
+                                    shape = CircleShape
+                                ),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 imageVector = item.icon,
                                 contentDescription = item.screen.label,
-                                tint = if (isSelected) LimeGlow else Color.White,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
-
-                        Text(
-                            text = "Scan",
-                            fontSize = 11.sp,
-                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.SemiBold,
-                            color = if (isSelected) Forest else TextMuted,
-                            modifier = Modifier.padding(top = 2.dp)
-                        )
-                    }
-                } else {
-                    // Standard navigation item
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center,
-                        modifier = Modifier
-                            .weight(1f)
-                            .clip(CircleShape)
-                            .clickable { onNavigate(item.screen.route) }
-                            .padding(vertical = 6.dp)
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .clip(CircleShape)
-                                .background(if (isSelected) PrimaryLight else Color.Transparent)
-                                .padding(horizontal = 14.dp, vertical = 4.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = item.icon,
-                                contentDescription = item.screen.label,
-                                tint = if (isSelected) Forest else TextMuted,
-                                modifier = Modifier.size(20.dp)
+                                tint = BotanicalOnPrimary,
+                                modifier = Modifier.size(26.dp)
                             )
                         }
 
                         Text(
                             text = item.screen.label,
-                            fontSize = 11.sp,
+                            style = FreshIQTypography.labelSmall.copy(fontSize = 10.sp),
+                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                            color = if (isSelected) BotanicalPrimaryContainer else BotanicalOnSurfaceVariant,
+                            modifier = Modifier.padding(top = 2.dp)
+                        )
+                    }
+                } else {
+                    // Standard Navigation Item
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .weight(1f)
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                onNavigate(item.screen.route)
+                            }
+                            .padding(vertical = 4.dp)
+                    ) {
+                        Icon(
+                            imageVector = item.icon,
+                            contentDescription = item.screen.label,
+                            tint = if (isSelected) BotanicalPrimaryContainer else BotanicalOutline,
+                            modifier = Modifier.size(22.dp)
+                        )
+
+                        Text(
+                            text = item.screen.label,
+                            style = FreshIQTypography.labelSmall.copy(fontSize = 11.sp),
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                            color = if (isSelected) Forest else TextMuted,
-                            maxLines = 1
+                            color = if (isSelected) BotanicalPrimaryContainer else BotanicalOnSurfaceVariant,
+                            maxLines = 1,
+                            modifier = Modifier.padding(top = 2.dp)
+                        )
+
+                        // Micro dot indicator under active icon
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 2.dp)
+                                .size(4.dp)
+                                .clip(CircleShape)
+                                .background(if (isSelected) BotanicalPrimaryContainer else Color.Transparent)
                         )
                     }
                 }
@@ -189,7 +202,7 @@ fun FreshIQBottomBarContent(
 fun FreshIQBottomBarPreview() {
     FreshIQTheme {
         FreshIQBottomBarContent(
-            currentRoute = Screen.Scan.route,
+            currentRoute = Screen.Home.route,
             onNavigate = {}
         )
     }

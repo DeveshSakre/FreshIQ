@@ -3,37 +3,98 @@ package com.freshiq.app.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // =========================================================================
-// FreshIQ Botanical Scientific Color Palette (Matching Web & Stitch Spec)
+// FreshIQ Botanical Intelligence Specification (Stitch Visual Design)
+// =========================================================================
+
+// Botanical Intelligence Primary (Crisp botanical leaf green)
+val BotanicalPrimary = Color(0xFF00653A)
+val BotanicalOnPrimary = Color(0xFFFFFFFF)
+val BotanicalPrimaryContainer = Color(0xFF1B804E)
+val BotanicalOnPrimaryContainer = Color(0xFFD8FFE1)
+val BotanicalPrimaryFixed = Color(0xFF98F6B9)
+val BotanicalPrimaryFixedDim = Color(0xFF7CDA9F)
+val BotanicalOnPrimaryFixed = Color(0xFF00210F)
+val BotanicalOnPrimaryFixedVariant = Color(0xFF00522E)
+
+// Botanical Intelligence Secondary (Sun-ripened amber)
+val BotanicalSecondary = Color(0xFF805600)
+val BotanicalOnSecondary = Color(0xFFFFFFFF)
+val BotanicalSecondaryContainer = Color(0xFFFEB63A)
+val BotanicalOnSecondaryContainer = Color(0xFF6E4900)
+val BotanicalSecondaryFixed = Color(0xFFFFDDB0)
+val BotanicalSecondaryFixedDim = Color(0xFFFFBA45)
+val BotanicalOnSecondaryFixed = Color(0xFF281800)
+val BotanicalOnSecondaryFixedVariant = Color(0xFF614000)
+
+// Botanical Intelligence Tertiary (Sage forest)
+val BotanicalTertiary = Color(0xFF25624C)
+val BotanicalOnTertiary = Color(0xFFFFFFFF)
+val BotanicalTertiaryContainer = Color(0xFF407B64)
+val BotanicalOnTertiaryContainer = Color(0xFFD3FFEA)
+val BotanicalTertiaryFixed = Color(0xFFB1F0D4)
+val BotanicalTertiaryFixedDim = Color(0xFF96D3B8)
+val BotanicalOnTertiaryFixed = Color(0xFF002116)
+val BotanicalOnTertiaryFixedVariant = Color(0xFF0F513C)
+
+// Botanical Surfaces (Organic off-white & tonal limestone layering)
+val BotanicalSurface = Color(0xFFF9F9F6)
+val BotanicalOnSurface = Color(0xFF1A1C1B)
+val BotanicalSurfaceVariant = Color(0xFFE2E3E0)
+val BotanicalOnSurfaceVariant = Color(0xFF3F4941)
+val BotanicalSurfaceContainerLowest = Color(0xFFFFFFFF)
+val BotanicalSurfaceContainerLow = Color(0xFFF4F4F1)
+val BotanicalSurfaceContainer = Color(0xFFEEEEEB)
+val BotanicalSurfaceContainerHigh = Color(0xFFE8E8E5)
+val BotanicalSurfaceContainerHighest = Color(0xFFE2E3E0)
+val BotanicalSurfaceBright = Color(0xFFF9F9F6)
+val BotanicalSurfaceDim = Color(0xFFDADAD7)
+val BotanicalSurfaceTint = Color(0xFF006D3F)
+
+// Botanical Inverses & Structure
+val BotanicalInverseSurface = Color(0xFF2F312F)
+val BotanicalInverseOnSurface = Color(0xFFF1F1EE)
+val BotanicalInversePrimary = Color(0xFF7CDA9F)
+val BotanicalOutline = Color(0xFF6F7A70)
+val BotanicalOutlineVariant = Color(0xFFBECABE)
+
+// Botanical Error Semantics
+val BotanicalError = Color(0xFFBA1A1A)
+val BotanicalOnError = Color(0xFFFFFFFF)
+val BotanicalErrorContainer = Color(0xFFFFDAD6)
+val BotanicalOnErrorContainer = Color(0xFF93000A)
+
+// =========================================================================
+// Legacy / Compatibility Aliases & Semantic Tokens
 // =========================================================================
 
 // Primary Brand Colors
 val Forest = Color(0xFF0F291E)
 val ForestDark = Color(0xFF0A1D15)
 val ForestLight = Color(0xFF1A3826)
-val PrimaryGreen = Color(0xFF16A34A)
-val PrimaryDark = Color(0xFF15803D)
-val PrimaryLight = Color(0xFFDCFCE7)
+val PrimaryGreen = BotanicalPrimaryContainer
+val PrimaryDark = BotanicalPrimary
+val PrimaryLight = BotanicalOnPrimaryContainer
 val Lime = Color(0xFF84CC16)
 val LimeLight = Color(0xFFECFCCB)
-val LimeGlow = Color(0xFFA3E635)
+val LimeGlow = BotanicalPrimaryFixed
 
 // Neutral Organic Slate/Mint Surface Palette
-val BgPage = Color(0xFFF4FBF3)
-val BgCard = Color(0xFFFFFFFF)
-val BgSubtle = Color(0xFFEEF6ED)
-val BgSubtleHover = Color(0xFFE3ECE2)
-val BgElevated = Color(0xFFFFFFFF)
+val BgPage = BotanicalSurface
+val BgCard = BotanicalSurfaceContainerLowest
+val BgSubtle = BotanicalSurfaceContainerLow
+val BgSubtleHover = BotanicalSurfaceContainer
+val BgElevated = BotanicalSurfaceContainerLowest
 
 // Text Colors
-val TextMain = Color(0xFF161D18)
-val TextMuted = Color(0xFF526056)
-val TextSubtle = Color(0xFF7E8E82)
+val TextMain = BotanicalOnSurface
+val TextMuted = BotanicalOnSurfaceVariant
+val TextSubtle = BotanicalOutline
 val TextLight = Color(0xFFFFFFFF)
 
 // Borders & Dividers
-val BorderLight = Color(0xFFDEE5DD)
-val BorderSubtle = Color(0xFFE8EFE7)
-val BorderAccent = Color(0xFFBBF7D0)
+val BorderLight = Color(0xFFE6E6DF)
+val BorderSubtle = BotanicalSurfaceContainerHighest
+val BorderAccent = BotanicalPrimaryFixed
 
 // Ripening Stage Progression Semantics (5-Stage Decay Scale)
 // Stage 1: Underripe - Firm Green
@@ -87,12 +148,12 @@ val StatusWarningBorder = Color(0xFFFDE68A)
 val StatusWarningText = Color(0xFF92400E)
 val StatusWarningIcon = Color(0xFFD97706)
 
-val StatusErrorBg = Color(0xFFFEE2E2)
+val StatusErrorBg = BotanicalErrorContainer
 val StatusErrorBorder = Color(0xFFFCA5A5)
-val StatusErrorText = Color(0xFFB91C1C)
-val StatusErrorIcon = Color(0xFFDC2626)
+val StatusErrorText = BotanicalError
+val StatusErrorIcon = BotanicalError
 
 val StatusSuccessBg = Color(0xFFDCFCE7)
 val StatusSuccessBorder = Color(0xFF86EFAC)
 val StatusSuccessText = Color(0xFF166534)
-val StatusSuccessIcon = Color(0xFF16A34A)
+val StatusSuccessIcon = BotanicalPrimaryContainer

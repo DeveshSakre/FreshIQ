@@ -8,35 +8,41 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val FreshIQColorScheme = lightColorScheme(
-    primary = PrimaryGreen,
-    onPrimary = Color.White,
-    primaryContainer = PrimaryLight,
-    onPrimaryContainer = PrimaryDark,
-    secondary = Forest,
-    onSecondary = Color.White,
-    secondaryContainer = LimeLight,
-    onSecondaryContainer = ForestDark,
-    tertiary = Lime,
-    onTertiary = ForestDark,
-    background = BgPage,
-    onBackground = TextMain,
-    surface = BgCard,
-    onSurface = TextMain,
-    surfaceVariant = BgSubtle,
-    onSurfaceVariant = TextMuted,
-    outline = BorderLight,
-    outlineVariant = BorderSubtle,
-    error = StatusErrorText,
-    onError = Color.White,
-    errorContainer = StatusErrorBg,
-    onErrorContainer = StatusErrorText
+    primary = BotanicalPrimary,
+    onPrimary = BotanicalOnPrimary,
+    primaryContainer = BotanicalPrimaryContainer,
+    onPrimaryContainer = BotanicalOnPrimaryContainer,
+    secondary = BotanicalSecondary,
+    onSecondary = BotanicalOnSecondary,
+    secondaryContainer = BotanicalSecondaryContainer,
+    onSecondaryContainer = BotanicalOnSecondaryContainer,
+    tertiary = BotanicalTertiary,
+    onTertiary = BotanicalOnTertiary,
+    tertiaryContainer = BotanicalTertiaryContainer,
+    onTertiaryContainer = BotanicalOnTertiaryContainer,
+    background = BotanicalSurface,
+    onBackground = BotanicalOnSurface,
+    surface = BotanicalSurface,
+    onSurface = BotanicalOnSurface,
+    surfaceVariant = BotanicalSurfaceContainerHighest,
+    onSurfaceVariant = BotanicalOnSurfaceVariant,
+    inverseSurface = BotanicalInverseSurface,
+    inverseOnSurface = BotanicalInverseOnSurface,
+    inversePrimary = BotanicalInversePrimary,
+    outline = BotanicalOutline,
+    outlineVariant = BotanicalOutlineVariant,
+    error = BotanicalError,
+    onError = BotanicalOnError,
+    errorContainer = BotanicalErrorContainer,
+    onErrorContainer = BotanicalOnErrorContainer
 )
 
 val FreshIQShapes = Shapes(
+    extraSmall = RoundedCornerShape(FreshIQRadius.radius2xs),
     small = RoundedCornerShape(FreshIQRadius.radiusSm),
     medium = RoundedCornerShape(FreshIQRadius.radiusMd),
     large = RoundedCornerShape(FreshIQRadius.radiusLg),
-    extraLarge = RoundedCornerShape(FreshIQRadius.radiusXl)
+    extraLarge = RoundedCornerShape(FreshIQRadius.radius2xl)
 )
 
 @Composable
