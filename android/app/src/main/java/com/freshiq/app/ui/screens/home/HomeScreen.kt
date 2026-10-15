@@ -368,8 +368,10 @@ fun HomeScreen(
                                             fontWeight = FontWeight.SemiBold,
                                             color = BotanicalOnSurface,
                                             maxLines = 1,
-                                            overflow = TextOverflow.Ellipsis
+                                            overflow = TextOverflow.Ellipsis,
+                                            modifier = Modifier.weight(1f, fill = false)
                                         )
+                                        Spacer(modifier = Modifier.width(8.dp))
                                         Box(
                                             modifier = Modifier
                                                 .clip(RoundedCornerShape(9999.dp))

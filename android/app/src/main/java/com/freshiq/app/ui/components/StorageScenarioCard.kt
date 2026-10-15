@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.freshiq.app.data.model.ScenarioRulDto
@@ -100,6 +102,7 @@ fun StorageScenarioCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(
+                    modifier = Modifier.weight(1f, fill = false),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(FreshIQSpacing.spaceSm)
                 ) {
@@ -118,22 +121,26 @@ fun StorageScenarioCard(
                         )
                     }
 
-                    Column {
+                    Column(modifier = Modifier.weight(1f, fill = false)) {
                         Text(
                             text = scenario.condition,
                             style = FreshIQTypography.titleMedium,
                             fontWeight = FontWeight.SemiBold,
-                            color = BotanicalOnSurface
+                            color = BotanicalOnSurface,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                         Text(
                             text = "${scenario.temperatureC.toInt()}°C Regime",
                             style = FreshIQTypography.labelSmall,
-                            color = BotanicalOnSurfaceVariant
+                            color = BotanicalOnSurfaceVariant,
+                            maxLines = 1
                         )
                     }
                 }
 
                 if (isBaseline) {
+                    Spacer(modifier = Modifier.width(8.dp))
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(9999.dp))
@@ -143,7 +150,8 @@ fun StorageScenarioCard(
                         Text(
                             text = "Baseline",
                             style = FreshIQTypography.labelSmall,
-                            color = BotanicalOnSurfaceVariant
+                            color = BotanicalOnSurfaceVariant,
+                            maxLines = 1
                         )
                     }
                 }

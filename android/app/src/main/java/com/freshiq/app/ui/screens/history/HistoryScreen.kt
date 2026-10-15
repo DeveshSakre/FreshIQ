@@ -56,6 +56,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.freshiq.app.ui.components.BadgeSize
 import com.freshiq.app.ui.components.FoodSafetyDisclaimer
 import com.freshiq.app.ui.components.FreshCard
 import com.freshiq.app.ui.components.FreshCardVariant
@@ -403,7 +404,9 @@ private fun HistoryFilterAndSearchSection(
                         Text(
                             text = "Search by produce, stage, or scan id...",
                             style = FreshIQTypography.bodyMedium,
-                            color = BotanicalOutline
+                            color = BotanicalOutline,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                     BasicTextField(
@@ -549,7 +552,11 @@ private fun HistoryScanCard(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        RipenessBadge(stage = item.stage, customLabel = item.stageLabel)
+                        RipenessBadge(
+                            stage = item.stage,
+                            customLabel = item.stageLabel,
+                            size = BadgeSize.Compact
+                        )
 
                         Text(
                             text = "${item.confidencePercent}%",
@@ -570,11 +577,15 @@ private fun HistoryScanCard(
                         Text(
                             text = item.storageConditionLabel,
                             style = FreshIQTypography.bodySmall,
-                            color = BotanicalOnSurfaceVariant
+                            color = BotanicalOnSurfaceVariant,
+                            modifier = Modifier.weight(1f, fill = false),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
 
                         // Avocado RUL (ONLY rendered for Avocado when stored)
                         if (isAvocado && item.ambientRulDays > 0f && !item.isTerminal) {
+                            Spacer(modifier = Modifier.width(8.dp))
                             Text(
                                 text = "~${String.format(Locale.US, "%.1f", item.ambientRulDays)}d RUL",
                                 fontFamily = FontFamily.Monospace,

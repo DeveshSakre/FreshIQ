@@ -18,6 +18,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -254,6 +256,7 @@ fun ScanScreenContent(
 // =========================================================================
 // 1. DEFAULT CAPTURE / VIEWFINDER STATE
 // =========================================================================
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ScanCaptureViewfinderState(
     uiState: ScanUiState,
@@ -319,9 +322,9 @@ private fun ScanCaptureViewfinderState(
                 }
 
                 // Capability Tags
-                Row(
+                FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     val stageTag = when (uiState.produceType) {
                         ProduceType.BANANA -> "3-Stage Ripeness"

@@ -54,6 +54,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -647,12 +648,14 @@ private fun SpecimenHeroCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column {
+                Column(modifier = Modifier.weight(1f, fill = false)) {
                     Text(
                         text = itemName.ifBlank { produceType.displayName },
                         style = FreshIQTypography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = BotanicalOnSurface
+                        color = BotanicalOnSurface,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                     Text(
                         text = produceType.scientificName,
@@ -661,6 +664,8 @@ private fun SpecimenHeroCard(
                         color = BotanicalOnSurfaceVariant
                     )
                 }
+
+                Spacer(modifier = Modifier.width(8.dp))
 
                 Box(
                     modifier = Modifier
@@ -721,8 +726,11 @@ private fun PrimaryRipenessAssessmentCard(
                     style = FreshIQTypography.labelSmall.copy(fontSize = 10.5.sp),
                     fontWeight = FontWeight.Bold,
                     color = BotanicalOutline,
-                    letterSpacing = 0.08.sp
+                    letterSpacing = 0.08.sp,
+                    modifier = Modifier.weight(1f, fill = false)
                 )
+
+                Spacer(modifier = Modifier.width(8.dp))
 
                 // Model confidence pill
                 Row(
@@ -900,8 +908,11 @@ private fun AvocadoCapabilitiesSection(
                         style = FreshIQTypography.labelSmall.copy(fontSize = 10.5.sp),
                         fontWeight = FontWeight.Bold,
                         color = BotanicalOutline,
-                        letterSpacing = 0.08.sp
+                        letterSpacing = 0.08.sp,
+                        modifier = Modifier.weight(1f, fill = false)
                     )
+
+                    Spacer(modifier = Modifier.width(8.dp))
 
                     Box(
                         modifier = Modifier
@@ -984,7 +995,7 @@ private fun AvocadoCapabilitiesSection(
                     .background(BotanicalSurfaceContainerLowest)
                     .border(1.dp, BotanicalPrimary, RoundedCornerShape(FreshIQRadius.radiusFull))
                     .clickable { navController.navigate(Screen.WhatIf.route) }
-                    .padding(horizontal = 14.dp),
+                    .padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -999,7 +1010,9 @@ private fun AvocadoCapabilitiesSection(
                     text = "What-If Lab",
                     style = FreshIQTypography.labelMedium,
                     fontWeight = FontWeight.Bold,
-                    color = BotanicalPrimary
+                    color = BotanicalPrimary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
 
@@ -1012,7 +1025,7 @@ private fun AvocadoCapabilitiesSection(
                     .background(BotanicalSurfaceContainerLowest)
                     .border(1.dp, BotanicalOutlineVariant, RoundedCornerShape(FreshIQRadius.radiusFull))
                     .clickable { navController.navigate(Screen.Comparison.route) }
-                    .padding(horizontal = 14.dp),
+                    .padding(horizontal = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -1027,7 +1040,9 @@ private fun AvocadoCapabilitiesSection(
                     text = "Compare Regimes",
                     style = FreshIQTypography.labelMedium,
                     fontWeight = FontWeight.Bold,
-                    color = BotanicalOnSurface
+                    color = BotanicalOnSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }

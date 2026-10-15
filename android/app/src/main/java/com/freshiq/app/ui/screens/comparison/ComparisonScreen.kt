@@ -6,6 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,11 +51,11 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.freshiq.app.data.local.ScanHistoryEntity
 import com.freshiq.app.data.model.PredictionResponseDto
+import com.freshiq.app.ui.components.BadgeSize
 import com.freshiq.app.ui.components.ExtrapolationNoticeCard
 import com.freshiq.app.ui.components.FoodSafetyDisclaimer
 import com.freshiq.app.ui.components.FreshCard
 import com.freshiq.app.ui.components.FreshCardVariant
-import com.freshiq.app.ui.components.FreshIQTopBar
 import com.freshiq.app.ui.components.FreshPrimaryButton
 import com.freshiq.app.ui.components.FreshSecondaryButton
 import com.freshiq.app.ui.components.RipenessBadge
@@ -101,12 +103,6 @@ fun ComparisonScreen(
             .fillMaxSize()
             .background(BotanicalSurface)
     ) {
-        FreshIQTopBar(
-            title = "Storage Comparison",
-            canNavigateBack = true,
-            onNavigateBack = { navController.popBackStack() }
-        )
-
         val prediction = activePrediction
 
         if (prediction == null) {
@@ -145,6 +141,7 @@ fun ComparisonScreen(
 // Active Comparison Content: Easy to Scan, Compact, Backend-Data-Driven
 // =========================================================================
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ComparisonActiveContent(
     prediction: PredictionResponseDto,
@@ -220,13 +217,17 @@ private fun ComparisonActiveContent(
                             color = BotanicalOnSurface
                         )
 
-                        Spacer(modifier = Modifier.height(2.dp))
+                        Spacer(modifier = Modifier.height(4.dp))
 
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(6.dp)
+                        FlowRow(
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            RipenessBadge(stage = stage, customLabel = displayStageLabel)
+                            RipenessBadge(
+                                stage = stage,
+                                customLabel = displayStageLabel,
+                                size = BadgeSize.Compact
+                            )
 
                             Box(
                                 modifier = Modifier
@@ -237,7 +238,9 @@ private fun ComparisonActiveContent(
                                 Text(
                                     text = formatConditionName(activeStorageCondition),
                                     style = FreshIQTypography.labelSmall.copy(fontSize = 10.sp),
-                                    color = BotanicalOnSurfaceVariant
+                                    color = BotanicalOnSurfaceVariant,
+                                    maxLines = 1,
+                                    softWrap = false
                                 )
                             }
                         }

@@ -97,7 +97,7 @@ fun FreshIQTopBar(
                 if (title != null) {
                     Text(
                         text = title,
-                        style = FreshIQTypography.headlineSmall,
+                        style = FreshIQTypography.titleMedium.copy(fontSize = 15.sp),
                         fontWeight = FontWeight.SemiBold,
                         color = BotanicalOnSurface,
                         maxLines = 1,

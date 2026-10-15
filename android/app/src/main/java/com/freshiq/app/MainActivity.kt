@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
                 val screenTitle = when (currentRoute) {
                     Screen.Analysis.route -> "Produce Analysis"
-                    Screen.Comparison.route -> "Shelf-Life Comparison"
+                    Screen.Comparison.route -> "Storage Comparison"
                     Screen.WhatIf.route -> "What-If Storage Lab"
                     Screen.History.route -> "Scan History"
                     Screen.Insights.route -> "ML Insights"

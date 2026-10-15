@@ -1,0 +1,17 @@
+# FreshIQ Backend Runtime Dependencies
+# ====================================
+# Framework & Server
+fastapi>=0.110.0,<1.0.0
+uvicorn[standard]>=0.28.0,<1.0.0
+pydantic>=2.0.0,<3.0.0
+python-multipart>=0.0.9
+
+# Data Processing & Image Handling
+pillow>=10.0.0,<11.0.0
+numpy>=1.26.0,<2.0.0
+pandas>=2.0.0,<3.0.0
+joblib>=1.3.0,<2.0.0
+
+# Scikit-learn (Pinned to 1.3.2 to ensure exact deserialization compatibility
+# with freshiq_shelflife_model.joblib trained in Phase 1B)
+scikit-learn==1.3.2

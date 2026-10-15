@@ -538,8 +538,10 @@ private fun ProduceCapabilityCard(
                     text = name,
                     style = FreshIQTypography.titleSmall,
                     fontWeight = FontWeight.Bold,
-                    color = BotanicalOnSurface
+                    color = BotanicalOnSurface,
+                    modifier = Modifier.weight(1f, fill = false)
                 )
+                Spacer(modifier = Modifier.width(8.dp))
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(FreshIQRadius.radiusFull))

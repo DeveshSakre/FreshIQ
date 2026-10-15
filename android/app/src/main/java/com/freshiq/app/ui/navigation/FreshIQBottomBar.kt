@@ -114,6 +114,7 @@ fun FreshIQBottomBarContent(
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
+                            .weight(1f)
                             .offset(y = (-10).dp)
                             .clickable(
                                 interactionSource = remember { MutableInteractionSource() },
